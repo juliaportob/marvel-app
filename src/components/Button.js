@@ -15,16 +15,13 @@ const Button = ({ title, isDisabled, onClick, className }) => (
 Button.propTypes = {
   title: PropTypes.string.isRequired,
   isDisabled: PropTypes.bool,
-  testId: PropTypes.string.isRequired,
   onClick: PropTypes.func,
-  userRole: PropTypes.string,
   className: PropTypes.string,
 };
 
 Button.defaultProps = {
   isDisabled: false,
   onClick: () => {},
-  userRole: '',
   className: '',
 };
 

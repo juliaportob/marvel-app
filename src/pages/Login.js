@@ -1,15 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-// import './Login.scss';
 import Input from '../components/Input';
 import Button from '../components/Button';
-// import { validateEmail, validatePassword } from '../../utils/validations';
-
-const validateEmailAndPassword = (mail, pass) => {
-  const seven = /.{6,}/;
-  const reg = /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/;
-  return (reg.test(mail) && seven.test(pass));
-}
+import validateEmailAndPassword from '../service/Validate';
+import propTypes from 'prop-types';
 
 export default function Login() {
   const [isDisabled, setIsDisabled] = useState(true);
@@ -30,8 +24,6 @@ export default function Login() {
 
   return (
     <div>
-      <div className="overlay" />
-      <div className="entrance" />
       <section className="defaultPage">
         <form className="loginForm">
           <section className="loginInputs">
@@ -67,3 +59,11 @@ export default function Login() {
     </div>
   );
 }
+
+Login.defaultProps = {
+  history: '/',
+};
+
+Login.propTypes = {
+  history: propTypes.shape(),
+};
