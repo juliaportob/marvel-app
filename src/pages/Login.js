@@ -1,81 +1,63 @@
-import React, { useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import propTypes from 'prop-types';
-// import Context from '../Context/Context';
-// import '../Login.css';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+// import './Login.scss';
+import Input from '../components/Input';
+import Button from '../components/Button';
+// import { validateEmail, validatePassword } from '../../utils/validations';
 
-export default function Login({ history }) {
-  // const { email, setEmail, password, setPassword,
-  //   handleClick, valid, setValid } = useContext(Context);
-
-  // useEffect(() => {
-  //   setValid(false);
-  //   // eslint-disable-next-line
-  // }, []);
+export default function Login() {
+  const [isDisabled, setIsDisabled] = useState(true);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const history = useHistory();
 
   // useEffect(() => {
-  //   const seven = /.{6,}/;
-  //   const reg = /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/;
-  //   setValid(reg.test(email) && seven.test(password));
-  //   // eslint-disable-next-line
+  //   if (validateEmail(email) && validatePassword(password)) {
+  //     setIsDisabled(false);
+  //   }
   // }, [email, password]);
 
+  const setField = (field, value) => {
+    if (field === 'Email') return setEmail(value);
+    return setPassword(value);
+  };
+
   return (
-    <div className="login-container">
-      <div className="login-header">
-        <h1 className="login-title">Marvel App</h1>
-        <div className="login-image" />
-      </div>
-      <form className="login-form">
-        <div className="login-inputs">
-          <label className="login-label" htmlFor="email-input">
-            Email
-            <input
-              type="email"
-              data-testid="email-input"
-              id="email-input"
-              // onChange={ ({ target }) => setEmail(target.value) }
-              className="login-email"
+    <div>
+      <div className="overlay" />
+      <div className="entrance" />
+      <section className="defaultPage">
+        <form className="loginForm">
+          <section className="loginInputs">
+            <Input
+              title="Email"
+              type="text"
+              value={ email }
+              onChange={ setField }
+              placeholder="User email"
             />
-          </label>
-          <label className="login-label" htmlFor="password-input">
-            Senha
-            <input
+            <Input
+              title="Password"
               type="password"
-              data-testid="password-input"
-              id="password-input"
-              // onChange={ ({ target }) => setPassword(target.value) }
-              className="login-pass"
+              value={ password }
+              onChange={ setField }
+              placeholder="User password"
             />
-          </label>
-        </div>
-        <div className="login-button-container">
-          <button
-            // disabled={ !valid }
-            type="button"
-            data-testid="signin-btn"
-            // onClick={ () => handleClick(history) }
-            className="login-button"
-          >
-            Entrar
-          </button>
-          <Link
-            to="/register"
-            data-testid="no-account-btn"
-            className="login-input-btn"
-          >
-            Ainda não tenho conta
-          </Link>
-        </div>
-      </form>
+          </section>
+          <section className="loginButtons">
+            <Button
+              title="Log in"
+              testId="signin-btn"
+              // isDisabled={ isDisabled }
+              onClick={ () => history.push('/main') }
+            />
+            <Button
+              title="Sign up"
+              onClick={ () => history.push('/register') }
+            />
+          </section>
+        </form>
+      </section>
     </div>
   );
 }
-
-Login.defaultProps = {
-  history: '/login',
-};
-
-Login.propTypes = {
-  history: propTypes.shape(),
-};
