@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Login, Main, Register, ComicDetail, Comics, Profile,
+  FavoriteComics, CharacterDetail, Characters, FavoriteCharacters } from './pages';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={ Login } />
+        {/* <Route exact path="/register" component={ Register } />
+        <Route exact path="/main" component={ Main } />
+        <Route exact path="/comic-detail" component={ ComicDetail } />
+        <Route exact path="/comics" component={ Comics } />
+        <Route exact path="/profile" component={ Profile } />
+        <Route exact path="/favorite-comics" component={ FavoriteComics } />
+        <Route exact path="/character-detail" component={ CharacterDetail } />
+        <Route exact path="/characters" component={ Characters } />
+        <Route exact path="/favorite-character" component={ FavoriteCharacters } /> */}
+      </Switch>
+    </BrowserRouter>
   );
 }
 
