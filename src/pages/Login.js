@@ -5,17 +5,23 @@ import Input from '../components/Input';
 import Button from '../components/Button';
 // import { validateEmail, validatePassword } from '../../utils/validations';
 
+const validateEmailAndPassword = (mail, pass) => {
+  const seven = /.{6,}/;
+  const reg = /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/;
+  return (reg.test(mail) && seven.test(pass));
+}
+
 export default function Login() {
   const [isDisabled, setIsDisabled] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const history = useHistory();
 
-  // useEffect(() => {
-  //   if (validateEmail(email) && validatePassword(password)) {
-  //     setIsDisabled(false);
-  //   }
-  // }, [email, password]);
+  useEffect(() => {
+    if (validateEmailAndPassword(email, password)) {
+      setIsDisabled(false);
+    }
+  }, [email, password]);
 
   const setField = (field, value) => {
     if (field === 'Email') return setEmail(value);
@@ -48,7 +54,7 @@ export default function Login() {
             <Button
               title="Log in"
               testId="signin-btn"
-              // isDisabled={ isDisabled }
+              isDisabled={ isDisabled }
               onClick={ () => history.push('/main') }
             />
             <Button
