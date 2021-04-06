@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom';
 import Input from '../components/Input';
 import Button from '../components/Button';
 import validateEmailAndPassword from '../service/Validate';
-import propTypes from 'prop-types';
 // import '../Register.css';
 
 export default function Register() {
@@ -63,11 +62,3 @@ export default function Register() {
     </div>
   );
 }
-
-Register.defaultProps = {
-  history: '/register',
-};
-
-Register.propTypes = {
-  history: propTypes.shape(),
-};

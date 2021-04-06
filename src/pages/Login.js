@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom';
 import Input from '../components/Input';
 import Button from '../components/Button';
 import validateEmailAndPassword from '../service/Validate';
-import propTypes from 'prop-types';
 
 export default function Login() {
   const [isDisabled, setIsDisabled] = useState(true);
@@ -59,11 +58,3 @@ export default function Login() {
     </div>
   );
 }
-
-Login.defaultProps = {
-  history: '/',
-};
-
-Login.propTypes = {
-  history: propTypes.shape(),
-};
