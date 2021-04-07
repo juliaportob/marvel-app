@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Roboto&family=Montserrat:wght@700&display=swap');
+
+* {
+  font-family: 'Roboto', sans-serif;
+  color: white;
+}
+
+.main-div-login {
+  background-color: #202020;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 15%;
+  padding-bottom: 20%;
+}
+
+.login-title {
+  padding-left: 10%;
+  padding-bottom: 10%;
+  width: 80%;
+}
+
+.div-img-login {
+  padding-top: 15%;
+}
+
+.img-iron {
+  width: 60vh;
+}
+
+.spider-man {
+  width: 30vh;
+}
+
+.defaultInput {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+}
+
+.individual-inputs {
+  margin-top: 10%;
+}
+
+.input-input {
+  border-style: none;
+  background-color: white;
+  color: #202020;
+  font-size: 120%;
+}
+
+.indiv-btn {
+  border-style: groove;
+  color: #202020;
+  font-size: 150%;
+  width: 100%;
+  margin-top: 10%
+}
+
+.create-account {
+  margin-top: 20%;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+@media screen and (min-width: 850px) {
+
+  .main-div-login {
+    background-image: url('../images/bg-marvel.jpg');
+    padding-top: 7%;
+  }
+
+  .individual-inputs {
+    width: 150%;
+  }
+
+  .indiv-btn {
+    width: 150%;
+  }
+
+  .login-title {
+    width: 110%;
+  }
+}

@@ -35,6 +35,13 @@ export default function Profile() {
   function handleClick() {
     updateUser(name, email, password);
     setMessage("Atualização concluída com sucesso");
+    if(message) {
+      return setTimeout(() => { 
+        <span>{message}</span> 
+      }, 3000);
+    } else {
+      return null
+    }
   }
 
   return (
@@ -54,7 +61,6 @@ export default function Profile() {
       <section className="register-section-btns">
         <Button title="Save" isDisabled={ isDisabled } onClick={ handleClick } />
       </section>
-      {message ? <span>{message}</span> : null}
     </div>
   );
 }
