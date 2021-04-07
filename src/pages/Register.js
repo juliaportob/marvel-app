@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Input from '../components/Input';
 import Button from '../components/Button';
 import validateEmailAndPassword from '../service/Validate';
-// import '../Register.css';
+import '../styles/Register.css';
 
 export default function Register() {
   const [name, setName] = useState('');

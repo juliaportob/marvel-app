@@ -4,7 +4,6 @@ import Input from '../components/Input';
 import Button from '../components/Button';
 import validateEmailAndPassword from '../service/Validate';
 import SpiderMan from '../images/spider-man.png';
-import Logo from '../images/logo.png';
 import '../styles/Login.css';
 
 export default function Login() {
@@ -32,7 +31,6 @@ export default function Login() {
           src="https://fontmeme.com/permalink/210407/b230fb5c229aaae01a07a6588e401572.png"
           alt="3d-fonts" border="0" />
       </a>
-      {/* <h1 className="login-title">Marvel's Fav</h1> */}
       <div className="div-spider">
         <img className="spider-man" src={ SpiderMan } alt="Spider Man" /> 
       </div>
@@ -64,7 +62,7 @@ export default function Login() {
               title="Log in"
               className="indiv-btn"
               isDisabled={ isDisabled }
-              onClick={ () => history.push('/main') }
+              onClick={ () => history.push('/characters') }
             />
             <h3 className="create-account">Don't have an account?</h3>
             <Button

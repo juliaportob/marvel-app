@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { Login, Main, Register, ComicDetail, Comics, Profile,
+import { Login, Register, ComicDetail, Comics, Profile,
   FavoriteComics, CharacterDetail, Characters, FavoriteCharacters } from './pages';
 
 function App() {
@@ -9,7 +9,6 @@ function App() {
       <Switch>
         <Route exact path="/" component={ Login } />
         <Route exact path="/register" component={ Register } />
-        <Route exact path="/main" component={ Main } />
         <Route exact path="/comic-detail" component={ ComicDetail } />
         <Route exact path="/comics" component={ Comics } />
         <Route exact path="/profile" component={ Profile } />
