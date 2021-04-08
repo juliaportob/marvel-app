@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, Link } from 'react-router-dom';
-import { allCharactersURL, nameCharacter1, nameCharacter2 } from '../../service/Endpoints';
+import { allCharactersURL, generalEndpoint1, generalEndpoint2 } from '../../service/Endpoints';
 import { getAllInfo, getByName } from '../../service/MarvelAPI';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -33,9 +33,8 @@ export default function Characters() {
   }, [actualCharacter])
 
   const searchCharacterByName = async () => {
-    const result = await getByName(nameCharacter1, 'characters', nameParameter, nameCharacter2);
+    const result = await getByName(generalEndpoint1, 'characters', nameParameter, generalEndpoint2);
     setActualCharacter(result);
-
   }
 
   const setField = (field, value) => {
@@ -85,7 +84,7 @@ export default function Characters() {
           <img
             className="character-pic"
             src={ `${actualCharacter.thumbnail && actualCharacter.thumbnail.path}.${actualCharacter.thumbnail && actualCharacter.thumbnail.extension}`}
-            alt="Character Thumbnail linha 69"/>
+            alt="Character Thumbnail"/>
           <Link to={`/character/${actualCharacter.id}`}>
             <p>More details</p>
           </Link>

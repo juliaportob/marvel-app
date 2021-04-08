@@ -9,7 +9,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={ Login } />
         <Route exact path="/register" component={ Register } />
-        <Route exact path="/comic-detail" component={ ComicDetail } />
+        <Route exact path="/comic/:id" component={ ComicDetail } />
         <Route exact path="/comics" component={ Comics } />
         <Route exact path="/profile" component={ Profile } />
         <Route exact path="/favorite-comics" component={ FavoriteComics } />
