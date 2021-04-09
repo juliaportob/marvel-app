@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { allComicsURL, generalEndpoint1, generalEndpoint2 } from '../../service/Endpoints';
-import { getAllInfo, getByName } from '../../service/MarvelAPI';
+import { getAllInfo, getByTitle } from '../../service/MarvelAPI';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import '../../styles/Characters.css'
@@ -33,7 +33,7 @@ export default function Comics() {
   }, [actualComic])
 
   const searchComicByName = async () => {
-    const result = await getByName(generalEndpoint1, 'comics', nameParameter, generalEndpoint2);
+    const result = await getByTitle(generalEndpoint1, 'comics', nameParameter, generalEndpoint2);
     setActualComic(result);
   }
 
@@ -79,7 +79,7 @@ export default function Comics() {
           </div>
         )) : 
         <div>
-          <p>{ actualComic.name }</p>
+          <p>{ actualComic.title }</p>
           <img
             className="comic-pic"
             src={ `${actualComic.thumbnail && actualComic.thumbnail.path}.${actualComic.thumbnail && actualComic.thumbnail.extension}`}
