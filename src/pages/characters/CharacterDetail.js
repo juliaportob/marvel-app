@@ -15,8 +15,8 @@ export default function CharacterDetail({ match: { params: { id } } }) {
     getCharacterId();
   }, [id]);
 
-  const getComicId = (cha) => {
-    const splittedId = cha.resourceURI.split('/');
+  const getComicId = (charact) => {
+    const splittedId = charact.resourceURI.split('/');
     const rightId = splittedId[6];
     return rightId;
   }

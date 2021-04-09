@@ -23,7 +23,6 @@ export default function Characters() {
     const func = async () => {
       const responseAPI = await getAllInfo(allCharactersURL, offset);
       setDataAPI(responseAPI);
-      // console.log(responseAPI);
     }
     func();
   }, [offset]);
@@ -63,7 +62,6 @@ export default function Characters() {
         />
         <button type="button" onClick={() => cleanState()}>Get All</button>
       </div>
-      {console.log(actualCharacter)}
       <div>
         { 
         actualCharacter === null ?
