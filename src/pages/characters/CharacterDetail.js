@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { generalEndpoint1, generalEndpoint2 } from '../../service/Endpoints';
-import { getById } from '../../service/MarvelAPI';
+import { getCharacterById } from '../../service/LocalRequest';
 import '../../styles/Characters.css'
 
 export default function CharacterDetail({ match: { params: { id } } }) {
@@ -9,8 +8,9 @@ export default function CharacterDetail({ match: { params: { id } } }) {
 
   useEffect(() => {
     const getCharacterId = async () => {
-      const result = await getById(generalEndpoint1, 'characters', id, generalEndpoint2);
+      const result = await getCharacterById(id);
       setCharacter(result);
+      console.log(character, 'resposta api')
     };
     getCharacterId();
   }, [id]);
@@ -28,17 +28,17 @@ export default function CharacterDetail({ match: { params: { id } } }) {
         <h3>{ character.name }</h3>
         <img
           className="character-pic"
-          src={ `${character.thumbnail && character.thumbnail.path}.${character.thumbnail && character.thumbnail.extension}`}
+          src={ `${character.image && character.image}`}
           alt="Character Thumbnail"
         />
         <p>{ character.description && character.description }</p>
         <h4>Comics:</h4>
-        {character.comics && character.comics.items.map((element, index) => (
+        {character.comics && character.comics.map((element, index) => (
           <div key={ index }>
             <Link to={`/comic/${getComicId(element)}`}>{ element.name }</Link>
           </div>
         ))}
-        <a href={character.urls && character.urls[1].url}>External information</a>
+        <a href={character.externalInformation && character.externalInformation}>External information</a>
       </div> 
     </div>
   );

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory, Link } from 'react-router-dom';
-import { allCharactersURL, generalEndpoint1, generalEndpoint2 } from '../../service/Endpoints';
-import { getAllInfo, getByName } from '../../service/MarvelAPI';
+import { Link } from 'react-router-dom';
+import { allCharactersURL } from '../../service/Endpoints';
+import { getAllInfo } from '../../service/MarvelAPI';
+import { getCharacterByName } from '../../service/LocalRequest';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import '../../styles/Characters.css'
@@ -12,7 +13,6 @@ export default function Characters() {
   const [nameParameter, setNameParameter] = useState('');
   const [actualCharacter, setActualCharacter] = useState(null);
   const [att, setAtt] = useState({});
-  const history = useHistory();
 
   const handleClick = () => {
     var count = offset + 10;
@@ -32,7 +32,7 @@ export default function Characters() {
   }, [actualCharacter])
 
   const searchCharacterByName = async () => {
-    const result = await getByName(generalEndpoint1, 'characters', nameParameter, generalEndpoint2);
+    const result = await getCharacterByName(nameParameter);
     setActualCharacter(result);
   }
 
@@ -81,7 +81,7 @@ export default function Characters() {
           <p>{ actualCharacter.name }</p>
           <img
             className="character-pic"
-            src={ `${actualCharacter.thumbnail && actualCharacter.thumbnail.path}.${actualCharacter.thumbnail && actualCharacter.thumbnail.extension}`}
+            src={ actualCharacter.image && actualCharacter.image }
             alt="Character Thumbnail"/>
           <Link to={`/character/${actualCharacter.id}`}>
             <p>More details</p>
