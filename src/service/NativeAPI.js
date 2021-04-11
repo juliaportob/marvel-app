@@ -70,5 +70,12 @@ export const addFavoriteAPI = (id_favorite, name, url_image, related, user_id) =
     'Content-type': applicationJsonContent,
   },
   body: JSON.stringify({ id_favorite, name, url_image, related, user_id }),
-}).then((response) => response)
-  .catch((error) => console.log(error));
+}).then((response) => response).catch((error) => console.log(error));
+
+export const removeFavoriteAPI = (id) => fetch(`${baseURL}favorite/delete`, {
+  method: 'DELETE',
+  headers: {
+    'Content-type': applicationJsonContent,
+  },
+  body: JSON.stringify({ id }),
+}).then((response) => response);
