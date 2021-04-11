@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import { allCharactersURL } from '../../service/Endpoints';
 import { getAllInfo } from '../../service/MarvelAPI';
 import { getCharacterByName } from '../../service/NativeAPI';
+import { verifyUser } from "../../service/LocalStorage";
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import '../../styles/Characters.css'
@@ -13,6 +15,7 @@ export default function Characters() {
   const [nameParameter, setNameParameter] = useState('');
   const [actualCharacter, setActualCharacter] = useState(null);
   const [att, setAtt] = useState({});
+  const history = useHistory();
 
   const handleClick = () => {
     var count = offset + 10;
@@ -20,12 +23,13 @@ export default function Characters() {
   };
 
   useEffect(() => {
+    verifyUser(history);
     const func = async () => {
       const responseAPI = await getAllInfo(allCharactersURL, offset);
       setDataAPI(responseAPI);
     }
     func();
-  }, [offset]);
+  }, [history, offset]);
 
   useEffect(() => {
     setAtt(actualCharacter);

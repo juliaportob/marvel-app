@@ -23,7 +23,7 @@ export const setUserLogin = (token, name, email, password, id) => {
 export const verifyUser = (history) => {
   const storage = JSON.parse(localStorage.getItem('user'));
   if (!storage) {
-    history.push('/login');
+    history.push('/');
     return { email: null, name: null, password: null, id: null, token: null };
   }
   const { name, email, password, id, token } = storage;

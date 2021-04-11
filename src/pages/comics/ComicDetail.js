@@ -1,17 +1,22 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import { getComicById } from '../../service/NativeAPI';
+import { verifyUser } from "../../service/LocalStorage";
+
 
 export default function ComicDetail({ match: { params: { id } } }) {
   const [comic, setComic] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
+    verifyUser(history);
     const getComicId = async () => {
       const result = await getComicById(id);
       setComic(result);
     };
     getComicId();
-  }, [id]);
+  }, [history, id]);
 
   const getCharacterId = (cmc) => {
     const splittedId = cmc.resourceURI.split("/");

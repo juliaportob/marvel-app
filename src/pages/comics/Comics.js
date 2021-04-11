@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import { allComicsURL } from '../../service/Endpoints';
 import { getAllInfo } from '../../service/MarvelAPI';
 import { getComicByTitle } from '../../service/NativeAPI';
+import { verifyUser } from "../../service/LocalStorage";
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import '../../styles/Characters.css'
@@ -13,6 +15,7 @@ export default function Comics() {
   const [comicTitle, setcomicTitle] = useState('');
   const [actualComic, setActualComic] = useState(null);
   const [att, setAtt] = useState({});
+  const history = useHistory();
 
   const handleClick = () => {
     var count = offset + 10;
@@ -20,6 +23,7 @@ export default function Comics() {
   };
 
   useEffect(() => {
+    verifyUser(history);
     const func = async () => {
       const responseAPI = await getAllInfo(allComicsURL, offset);
       setDataAPI(responseAPI);
