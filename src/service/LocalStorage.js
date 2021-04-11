@@ -1,6 +1,7 @@
 export const updateUser = (name, email, password) => {
   const previousLocalStorage = JSON.parse(localStorage.getItem('user'));
   const newLocalStorage = { ...previousLocalStorage, 'name': name, 'email': email, 'password': password };
+  console.log(newLocalStorage, 'func setar local storage')
   localStorage.setItem('user', JSON.stringify(newLocalStorage));
 };
 
@@ -14,8 +15,8 @@ export const setUser = (name, email, password) => {
   return previousUser;
 };
 
-export const setUserLogin = (token, name, email, id) => {
-  const previousUser = localStorage.setItem('user', JSON.stringify({ token: token, name: name, email: email, id: id }));
+export const setUserLogin = (token, name, email, password, id) => {
+  const previousUser = localStorage.setItem('user', JSON.stringify({ token: token, name: name, email: email, password: password, id: id }));
   return previousUser;
 };
 
@@ -23,8 +24,8 @@ export const verifyUser = (history) => {
   const storage = JSON.parse(localStorage.getItem('user'));
   if (!storage) {
     history.push('/login');
-    return { email: null, name: null, password: null };
+    return { email: null, name: null, password: null, id: null, token: null };
   }
-  const { name, email, password } = storage;
-  return { name, email, password };
+  const { name, email, password, id, token } = storage;
+  return { name, email, password, id, token };
 };

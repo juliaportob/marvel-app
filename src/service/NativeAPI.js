@@ -53,3 +53,12 @@ export const loginUser = (email, password) => fetch(`${baseURL}user/login`, {
 })
   .then((response) => response.json())
   .catch((error) => console.log(error));
+
+export const updateUserAPI = (name, email, password, id, token) => fetch(`${baseURL}user/update`, {
+  method: 'PUT',
+  headers: {
+    'Content-type': applicationJsonContent,
+    authorization: token,
+  },
+  body: JSON.stringify({ name, email, password, id }),
+}).then((response) => response);
