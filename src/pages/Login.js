@@ -28,8 +28,12 @@ export default function Login() {
 
   const handleClick = async () => {
     const resp =  await setUserOnAPI();
+    const { token, name, email, id } = resp;
     console.log(resp, 'resposta api login');
-    if (resp && !resp.message) history.push('/characters');
+    if (resp && !resp.message) {
+      setUserLogin(token, name, email, id);
+      history.push('/characters');
+    }
     if (resp && resp.message) setMessage(resp.message);
   };
 
