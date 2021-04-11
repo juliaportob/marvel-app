@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import { getCharacterById, addFavoriteAPI } from '../../service/NativeAPI';
 import { verifyUser, getUser } from "../../service/LocalStorage";
+import Menu from "../../components/Menu";
 import '../../styles/Characters.css'
 
 export default function CharacterDetail({ match: { params: { id } } }) {
@@ -30,7 +31,10 @@ export default function CharacterDetail({ match: { params: { id } } }) {
   };
 
   return (
-    <div >
+    <div>
+      <header>
+        <Menu />
+      </header>
       <h2>Character's Detail</h2>
       <div>
         <h3>{ character.name }</h3>

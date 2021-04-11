@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { Link } from 'react-router-dom';
-import { getComicById, addFavoriteAPI } from '../../service/NativeAPI';
+import { Link } from "react-router-dom";
+import { getComicById, addFavoriteAPI } from "../../service/NativeAPI";
 import { verifyUser, getUser } from "../../service/LocalStorage";
+import Menu from "../../components/Menu";
 
-
-export default function ComicDetail({ match: { params: { id } } }) {
+export default function ComicDetail({
+  match: {
+    params: { id },
+  },
+}) {
   const [comic, setComic] = useState([]);
   const history = useHistory();
 
@@ -26,17 +30,26 @@ export default function ComicDetail({ match: { params: { id } } }) {
 
   const handleClickFav = async () => {
     const { id: user_id } = getUser();
-    return await addFavoriteAPI(comic.id, comic.title, comic.image, 'characters', user_id);
+    return await addFavoriteAPI(
+      comic.id,
+      comic.title,
+      comic.image,
+      "characters",
+      user_id
+    );
   };
 
   return (
     <div>
+      <header>
+        <Menu />
+      </header>
       <h2>Comic's Detail</h2>
       <div>
         <h3>{comic.title}</h3>
         <img
           className="comic-pic"
-          src={ comic.image && comic.image }
+          src={comic.image && comic.image}
           alt="Comic Thumbnail"
         />
         <p>{comic.description && comic.description}</p>
@@ -53,8 +66,12 @@ export default function ComicDetail({ match: { params: { id } } }) {
               </Link>
             </div>
           ))}
-        <a href={comic.externalInformation && comic.externalInformation}>External information</a>
-        <button type="button" onClick={ () => handleClickFav() }>Favorite</button>
+        <a href={comic.externalInformation && comic.externalInformation}>
+          External information
+        </a>
+        <button type="button" onClick={() => handleClickFav()}>
+          Favorite
+        </button>
       </div>
     </div>
   );
