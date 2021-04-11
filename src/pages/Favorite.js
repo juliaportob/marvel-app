@@ -1,95 +1,48 @@
-// import React, { useState, useEffect } from 'react';
-// import { Link } from 'react-router-dom';
-// import { getFavoriteByUserId } from '../service/NativeAPI';
-// import Input from '../components/Input';
-// import Button from '../components/Button';
-// import '../styles/Characters.css'
+import React, { useState, useEffect } from 'react';
+import { useHistory } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import { verifyUser } from "../service/LocalStorage";
+import { getFavoriteByUserId } from "../service/NativeAPI";
 
-// export default function Favorite() {
-//   const [dataAPI, setDataAPI] = useState([]);
-//   const [offset, setOffset] = useState(0);
-//   const [comicTitle, setcomicTitle] = useState('');
-//   const [actualComic, setActualComic] = useState(null);
-//   const [att, setAtt] = useState({});
+export default function Favorite() {
+  const [dataAPI, setDataAPI] = useState([]);
+  const [comicTitle, setcomicTitle] = useState('');
+  const [actualComic, setActualComic] = useState(null);
+  const [att, setAtt] = useState({});
+  const history = useHistory();
 
-//   const handleClick = () => {
-//     var count = offset + 10;
-//     return setOffset(count);
-//   };
+  useEffect(() => {
+    const { email, id } = verifyUser(history);
+    if(!email) return null;
+    const func = async () => {
+      const responseAPI = await getFavoriteByUserId(id);
+      setDataAPI(responseAPI);
+    }
+    func();
+  }, [history]);
 
-//   useEffect(() => {
-//     const func = async () => {
-//       const responseAPI = await getAllInfo(allComicsURL, offset);
-//       setDataAPI(responseAPI);
-//     }
-//     func();
-//   }, [offset]);
+  const verifyFavoriteType = (fav) => {
+    if(fav.related === 'comics') return `/character/${fav.id_favorite}`;
+    return `/comic/${fav.id_favorite}`;
+  }
 
-//   useEffect(() => {
-//     setAtt(actualComic);
-//   }, [actualComic])
-
-//   const searchComicByName = async () => {
-//     const result = await getComicByTitle(comicTitle);
-//     setActualComic(result);
-//   }
-
-//   const setField = (field, value) => {
-//     if (field === 'Search Comic') return setcomicTitle(value);
-//   };
-
-//   const cleanState = () => {
-//     setActualComic(null);
-//     setcomicTitle('');
-//   };
-
-//   return (
-//     <div >
-//       <h2>Comics</h2>
-//       <div>
-//         <Input 
-//           title="Search Comic"
-//           type="text"
-//           value={ comicTitle }
-//           onChange={ setField }
-//         />
-//         <Button 
-//           title="Search"
-//           className="indiv-btn"
-//           onClick={ async () => await searchComicByName() }
-//         />
-//         <button type="button" onClick={() => cleanState()}>Get All</button>
-//       </div>
-//       <div>
-//         { 
-//         actualComic === null ?
-//         dataAPI.map((comic, index) => (
-//           <div key={ index }>
-//             <p>{ comic.title }</p>
-//             <img
-//               className="comic-pic"
-//               src={ `${comic.thumbnail.path}.${comic.thumbnail.extension}`}
-//               alt="Comic Thumbnail"/>
-//             <Link to={`/comic/${comic.id}`}>
-//               <p>More details</p>
-//             </Link>
-//           </div>
-//         )) : 
-//         <div>
-//           <p>{ actualComic.title }</p>
-//           <img
-//             className="comic-pic"
-//             src={ actualComic.image && actualComic.image }
-//             alt="Comic Thumbnail"/>
-//           <Link to={`/comic/${actualComic.id}`}>
-//             <p>More details</p>
-//           </Link>
-//         </div> 
-//         }
-//       </div>
-//       <div>
-//         <button type="button" onClick={() => handleClick()}>Next</button>
-//       </div>
-//     </div>
-//   );
-// }
+  return (
+    <div >
+      <h2>Favorite</h2>
+      <div>
+        {dataAPI.map((fav, index) => (
+          <div key={index}>
+            <p>{fav.name}</p>
+            <img
+              className="character-pic"
+              src={fav.url_image && fav.url_image}
+              alt="Favorite Thumbnail" />
+            <Link to={verifyFavoriteType(fav)}>
+              <p>More details</p>
+            </Link>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
