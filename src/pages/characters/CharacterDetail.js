@@ -13,7 +13,6 @@ export default function CharacterDetail({ match: { params: { id } } }) {
     verifyUser(history);
     const getCharacterId = async () => {
       const result = await getCharacterById(id);
-      
       setCharacter(result);
     };
     getCharacterId();

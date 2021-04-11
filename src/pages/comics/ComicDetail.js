@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { Link } from 'react-router-dom';
-import { getComicById } from '../../service/NativeAPI';
-import { verifyUser } from "../../service/LocalStorage";
+import { getComicById, addFavoriteAPI } from '../../service/NativeAPI';
+import { verifyUser, getUser } from "../../service/LocalStorage";
 
 
 export default function ComicDetail({ match: { params: { id } } }) {
@@ -22,6 +22,11 @@ export default function ComicDetail({ match: { params: { id } } }) {
     const splittedId = cmc.resourceURI.split("/");
     const rightId = splittedId[6];
     return rightId;
+  };
+
+  const handleClickFav = async () => {
+    const { id: user_id } = getUser();
+    return await addFavoriteAPI(comic.id, comic.title, comic.image, 'characters', user_id);
   };
 
   return (
@@ -49,6 +54,7 @@ export default function ComicDetail({ match: { params: { id } } }) {
             </div>
           ))}
         <a href={comic.externalInformation && comic.externalInformation}>External information</a>
+        <button type="button" onClick={ () => handleClickFav() }>Favorite</button>
       </div>
     </div>
   );
