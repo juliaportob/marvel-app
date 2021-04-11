@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { Link } from 'react-router-dom';
-import { getCharacterById } from '../../service/NativeAPI';
-import { verifyUser } from "../../service/LocalStorage";
+import { getCharacterById, addFavoriteAPI } from '../../service/NativeAPI';
+import { verifyUser, getUser } from "../../service/LocalStorage";
 import '../../styles/Characters.css'
 
 export default function CharacterDetail({ match: { params: { id } } }) {
@@ -13,8 +13,8 @@ export default function CharacterDetail({ match: { params: { id } } }) {
     verifyUser(history);
     const getCharacterId = async () => {
       const result = await getCharacterById(id);
+      
       setCharacter(result);
-      console.log(character, 'resposta api')
     };
     getCharacterId();
   }, [history, id]);
@@ -24,6 +24,11 @@ export default function CharacterDetail({ match: { params: { id } } }) {
     const rightId = splittedId[6];
     return rightId;
   }
+
+  const handleClickFav = async () => {
+    const { id: user_id } = getUser();
+    return await addFavoriteAPI(character.id, character.name, character.image, 'comics', user_id);
+  };
 
   return (
     <div >
@@ -43,6 +48,7 @@ export default function CharacterDetail({ match: { params: { id } } }) {
           </div>
         ))}
         <a href={character.externalInformation && character.externalInformation}>External information</a>
+        <button type="button" onClick={ () => handleClickFav() }>Favorite</button>
       </div> 
     </div>
   );
