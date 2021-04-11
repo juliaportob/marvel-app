@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { getComicById } from '../../service/LocalRequest';
+import { getComicById } from '../../service/NativeAPI';
 
 export default function ComicDetail({ match: { params: { id } } }) {
   const [comic, setComic] = useState([]);

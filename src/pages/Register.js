@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Input from '../components/Input';
 import Button from '../components/Button';
+import { registerUser } from '../service/NativeAPI';
 import validateEmailAndPassword from '../service/Validate';
 import '../styles/Register.css';
 
@@ -15,9 +16,18 @@ export default function Register() {
   useEffect(() => {
     if (validateEmailAndPassword(email, password)) {
       setIsDisabled(false);
-      localStorage.setItem('user', JSON.stringify({ name: name, email: email, password: password }));
     }
-  }, [name, email, password]);
+  }, [email, password]);
+
+  const setUserOnAPI = async () => {
+    const requestAPI = await registerUser(name, email, password);
+    return requestAPI;
+  };
+
+  const handleClick = async () => {
+    await setUserOnAPI();
+    history.push('/')
+  }
 
   const setField = (field, value) => {
     if (field === 'Name') return setName(value);
@@ -56,7 +66,7 @@ export default function Register() {
       <Button
         title="Register"
         isDisabled={ isDisabled }
-        onClick={ () => history.push('/main') }
+        onClick={ () => handleClick() }
       />
       </section>
     </div>

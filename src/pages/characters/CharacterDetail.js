@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { getCharacterById } from '../../service/LocalRequest';
+import { getCharacterById } from '../../service/NativeAPI';
 import '../../styles/Characters.css'
 
 export default function CharacterDetail({ match: { params: { id } } }) {

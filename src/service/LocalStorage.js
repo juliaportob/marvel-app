@@ -14,6 +14,11 @@ export const setUser = (name, email, password) => {
   return previousUser;
 };
 
+export const setUserLogin = (token, name, email, id) => {
+  const previousUser = localStorage.setItem('user', JSON.stringify({ token: token, name: name, email: email, id: id }));
+  return previousUser;
+};
+
 export const verifyUser = (history) => {
   const storage = JSON.parse(localStorage.getItem('user'));
   if (!storage) {

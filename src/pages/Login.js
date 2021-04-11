@@ -3,6 +3,8 @@ import { useHistory } from 'react-router-dom';
 import Input from '../components/Input';
 import Button from '../components/Button';
 import validateEmailAndPassword from '../service/Validate';
+import { loginUser } from '../service/NativeAPI';
+import { setUserLogin } from '../service/LocalStorage';
 import SpiderMan from '../images/spider-man.png';
 import '../styles/Login.css';
 
@@ -10,6 +12,7 @@ export default function Login() {
   const [isDisabled, setIsDisabled] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
   const history = useHistory();
 
   useEffect(() => {
@@ -17,6 +20,18 @@ export default function Login() {
       setIsDisabled(false);
     }
   }, [email, password]);
+
+  const setUserOnAPI = async () => {
+    const requestAPI = await loginUser(email, password);
+    return requestAPI;
+  };
+
+  const handleClick = async () => {
+    const resp =  await setUserOnAPI();
+    console.log(resp, 'resposta api login');
+    if (resp && !resp.message) history.push('/characters');
+    if (resp && resp.message) setMessage(resp.message);
+  };
 
   const setField = (field, value) => {
     if (field === 'Email') return setEmail(value);
@@ -57,12 +72,13 @@ export default function Login() {
               />
             </div>
           </section>
+          { message !== '' && (<span>{message}</span>) }
           <section className="loginButtons">
             <Button
               title="Log in"
               className="indiv-btn"
               isDisabled={ isDisabled }
-              onClick={ () => history.push('/characters') }
+              onClick={ () => handleClick() }
             />
             <h3 className="create-account">Don't have an account?</h3>
             <Button
@@ -73,9 +89,6 @@ export default function Login() {
           </section>
         </form>
       </section>
-      {/* <div className="div-img-login">
-        <img className="img-iron" src={ IronMan } alt="Iron man" /> 
-      </div> */}
     </div>
   );
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { allCharactersURL } from '../../service/Endpoints';
 import { getAllInfo } from '../../service/MarvelAPI';
-import { getCharacterByName } from '../../service/LocalRequest';
+import { getCharacterByName } from '../../service/NativeAPI';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import '../../styles/Characters.css'
