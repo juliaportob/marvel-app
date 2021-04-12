@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { getComicById, addFavoriteAPI } from "../../service/NativeAPI";
 import { verifyUser, getUser } from "../../service/LocalStorage";
 import Menu from "../../components/Menu";
+import "../../styles/Details.css";
 
 export default function ComicDetail({
   match: {
@@ -40,7 +41,7 @@ export default function ComicDetail({
   };
 
   return (
-    <div>
+    <div className="main-div-details">
       <header>
         <Menu />
       </header>
@@ -48,7 +49,7 @@ export default function ComicDetail({
       <div>
         <h3>{comic.title}</h3>
         <img
-          className="comic-pic"
+          className="indiv-pic"
           src={comic.image && comic.image}
           alt="Comic Thumbnail"
         />
@@ -66,10 +67,17 @@ export default function ComicDetail({
               </Link>
             </div>
           ))}
-        <a href={comic.externalInformation && comic.externalInformation}>
+        <a
+          className="list"
+          href={comic.externalInformation && comic.externalInformation}
+        >
           External information
         </a>
-        <button type="button" onClick={() => handleClickFav()}>
+        <button
+          className="indiv-btn"
+          type="button"
+          onClick={() => handleClickFav()}
+        >
           Favorite
         </button>
       </div>

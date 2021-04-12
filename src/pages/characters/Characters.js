@@ -51,15 +51,16 @@ export default function Characters() {
   };
 
   return (
-    <div>
+    <div className="main-div-characters">
       <header>
         <Menu />
       </header>
       <h2>Characters</h2>
-      <div>
+      <div className="main-btns">
         <Input
           title="Search Character"
           type="text"
+          className="search-input"
           value={nameParameter}
           onChange={setField}
         />
@@ -68,11 +69,15 @@ export default function Characters() {
           className="indiv-btn"
           onClick={async () => await searchCharacterByName()}
         />
-        <button type="button" onClick={() => cleanState()}>
+        <button
+          className="indiv-btn"
+          type="button"
+          onClick={() => cleanState()}
+        >
           Get All
         </button>
       </div>
-      <div>
+      <div className="all-characters">
         {actualCharacter === null ? (
           dataAPI.map((character, index) => (
             <div key={index}>
@@ -88,7 +93,7 @@ export default function Characters() {
             </div>
           ))
         ) : (
-          <div>
+          <div className="unique-character">
             <p>{actualCharacter.name}</p>
             <img
               className="character-pic"
@@ -102,7 +107,11 @@ export default function Characters() {
         )}
       </div>
       <div>
-        <button type="button" onClick={() => handleClick()}>
+        <button
+          className="indiv-btn"
+          type="button"
+          onClick={() => handleClick()}
+        >
           Next
         </button>
       </div>

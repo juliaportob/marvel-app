@@ -6,6 +6,7 @@ import validateEmailAndPassword from "../service/Validate";
 import { updateUserAPI } from "../service/NativeAPI";
 import { updateUser, verifyUser } from "../service/LocalStorage";
 import Menu from "../components/Menu";
+import "../styles/Details.css";
 
 export default function Profile() {
   const [name, setName] = useState("");
@@ -50,7 +51,7 @@ export default function Profile() {
   };
 
   return (
-    <div className="profile-main-div">
+    <div className="main-div-profile">
       <header>
         <Menu />
       </header>
@@ -67,7 +68,12 @@ export default function Profile() {
         </div>
       </form>
       <section className="register-section-btns">
-        <Button title="Save" isDisabled={isDisabled} onClick={handleClick} />
+        <Button
+          className="indiv-btn"
+          title="Save"
+          isDisabled={isDisabled}
+          onClick={handleClick}
+        />
       </section>
     </div>
   );

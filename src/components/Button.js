@@ -1,12 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 const Button = ({ title, isDisabled, onClick, className }) => (
   <button
     type="button"
-    disabled={ isDisabled }
-    onClick={ () => onClick() }
-    className={ className }
+    disabled={isDisabled}
+    onClick={() => onClick()}
+    className={className}
   >
     {title}
   </button>
@@ -22,7 +22,7 @@ Button.propTypes = {
 Button.defaultProps = {
   isDisabled: false,
   onClick: () => {},
-  className: '',
+  className: "",
 };
 
 export default Button;

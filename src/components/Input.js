@@ -1,19 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import '../styles/Login.css';
+import React from "react";
+import PropTypes from "prop-types";
+import "../styles/Login.css";
 
 const Input = ({ title, type, onChange, value, placeholder }) => (
   <div className="defaultInput">
-    <label htmlFor={ title }>
-      {title}
-    </label>
+    <label htmlFor={title}>{title}</label>
     <input
       className="input-input"
-      id={ title }
-      type={ type }
-      onChange={ (e) => onChange(title, e.target.value) }
-      value={ value }
-      placeholder={ placeholder }
+      id={title}
+      type={type}
+      onChange={(e) => onChange(title, e.target.value)}
+      value={value}
+      placeholder={placeholder}
     />
   </div>
 );

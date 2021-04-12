@@ -5,35 +5,24 @@
   color: white;
 }
 
-.main-div-characters {
+.main-div-details {
   background-color: #202020;
   padding-left: 2%;
   padding-top: 2%;
 }
 
-.character-pic {
-  width: 30vh;
-}
-
-.all-characters {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  max-width: 100%;
-}
-
-.unique-character {
-  max-width: 100%;
+.indiv-pic {
+  max-width: 40vh;
 }
 
 .indiv-btn {
   width: 30%;
   color: #202020;
 }
-.search-input  {
-  width: 20%;
-}
 
-.main-btns {
-  max-width: 70%;
+.main-div-profile {
+  background-color: #202020;
+  padding-left: 2%;
+  padding-top: 2%;
+  padding-bottom: 40%;
 }

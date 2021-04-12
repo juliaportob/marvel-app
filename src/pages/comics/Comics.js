@@ -51,15 +51,16 @@ export default function Comics() {
   };
 
   return (
-    <div>
+    <div className="main-div-characters">
       <header>
         <Menu />
       </header>
       <h2>Comics</h2>
-      <div>
+      <div className="main-btns">
         <Input
           title="Search Comic"
           type="text"
+          className="search-input"
           value={comicTitle}
           onChange={setField}
         />
@@ -68,17 +69,21 @@ export default function Comics() {
           className="indiv-btn"
           onClick={async () => await searchComicByName()}
         />
-        <button type="button" onClick={() => cleanState()}>
+        <button
+          className="indiv-btn"
+          type="button"
+          onClick={() => cleanState()}
+        >
           Get All
         </button>
       </div>
-      <div>
+      <div className="all-characters">
         {actualComic === null ? (
           dataAPI.map((comic, index) => (
             <div key={index}>
               <p>{comic.title}</p>
               <img
-                className="comic-pic"
+                className="character-pic"
                 src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
                 alt="Comic Thumbnail"
               />
@@ -102,7 +107,11 @@ export default function Comics() {
         )}
       </div>
       <div>
-        <button type="button" onClick={() => handleClick()}>
+        <button
+          className="indiv-btn"
+          type="button"
+          onClick={() => handleClick()}
+        >
           Next
         </button>
       </div>

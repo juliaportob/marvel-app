@@ -3,6 +3,7 @@ import { useHistory, Link } from "react-router-dom";
 import { verifyUser } from "../service/LocalStorage";
 import { getFavoriteByUserId, removeFavoriteAPI } from "../service/NativeAPI";
 import Menu from "../components/Menu";
+import "../styles/Details.css";
 
 export default function Favorite() {
   const [favorite, setFavorite] = useState([]);
@@ -40,7 +41,7 @@ export default function Favorite() {
   };
 
   return (
-    <div>
+    <div className="main-div-details">
       <header>
         <Menu />
       </header>
@@ -57,7 +58,11 @@ export default function Favorite() {
             <Link to={verifyTipyOfFavorite(fav)}>
               <p>More details</p>
             </Link>
-            <button type="button" onClick={() => removeFav(fav)}>
+            <button
+              className="indiv-btn"
+              type="button"
+              onClick={() => removeFav(fav)}
+            >
               Remove Favorite
             </button>
           </div>

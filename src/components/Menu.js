@@ -1,31 +1,31 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Menu = () => (
   <div>
     <Link to="/profile">
       <div>
-      <p>Profile</p>
+        <p>Profile</p>
       </div>
     </Link>
     <Link to="/favorite">
       <div>
-      <p>Favorite</p>
+        <p>Favorite</p>
       </div>
     </Link>
     <Link to="/characters">
       <div>
-      <p>Characters</p>
+        <p>Characters</p>
       </div>
     </Link>
     <Link to="/comics">
       <div>
-      <p>Comics</p>
+        <p>Comics</p>
       </div>
     </Link>
     <Link to="/">
-      <div onClick={ () => localStorage.clear() }>
-      <p>Log out</p>
+      <div onClick={() => localStorage.clear()}>
+        <p>Log out</p>
       </div>
     </Link>
   </div>
