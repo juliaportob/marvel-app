@@ -36,7 +36,7 @@ export default function Register() {
   };
 
   return (
-    <div className="register-container">
+    <div className="main-div-register">
       <form className="register-form">
         <div className="register-inputs">
           <Input
