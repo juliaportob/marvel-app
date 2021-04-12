@@ -26,3 +26,9 @@
   padding-top: 2%;
   padding-bottom: 40%;
 }
+
+.main-div-menu {
+  display: flex;
+  flex-direction: row;
+}
+
