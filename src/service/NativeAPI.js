@@ -32,7 +32,7 @@ export const getFavoriteByUserId = async (id) => {
 };
 
 export const getAllCharacters = async (offset) => {
-  const all = await fetch(`${baseURL}character/${offset}`)
+  const all = await fetch(`${baseURL}character/all/${offset}`)
   const response = await all.json();
   return response;
 };
