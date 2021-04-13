@@ -37,6 +37,12 @@ export const getAllCharacters = async (offset) => {
   return response;
 };
 
+export const getAllComics = async (offset) => {
+  const all = await fetch(`${baseURL}comic/all/${offset}`)
+  const response = await all.json();
+  return response;
+};
+
 export const registerUser = async (name, email, password) => {
   const newUser = await fetch(`${baseURL}user/register`, {
     method: "POST",

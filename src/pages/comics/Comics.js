@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { getAllInfo } from "../../service/MarvelAPI";
-import { getComicByTitle } from "../../service/NativeAPI";
+import { getComicByTitle, getAllComics } from "../../service/NativeAPI";
 import { verifyUser } from "../../service/LocalStorage";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
@@ -25,7 +24,7 @@ export default function Comics() {
   useEffect(() => {
     verifyUser(history);
     const func = async () => {
-      const responseAPI = await getAllInfo('comics', offset);
+      const responseAPI = await getAllComics(offset);
       setDataAPI(responseAPI);
     };
     func();
