@@ -31,6 +31,12 @@ export const getFavoriteByUserId = async (id) => {
   return response;
 };
 
+export const getAllCharacters = async (offset) => {
+  const all = await fetch(`${baseURL}character/${offset}`)
+  const response = await all.json();
+  return response;
+};
+
 export const registerUser = async (name, email, password) => {
   const newUser = await fetch(`${baseURL}user/register`, {
     method: "POST",
