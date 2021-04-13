@@ -34,8 +34,8 @@ Componentes:
 
 ## LINKS
 
-Aplicação:
-API da Marvel:
-API exclusiva da Aplicação:
+- Aplicação: https://marvel-front-jp.herokuapp.com/
+- API da Marvel: https://developer.marvel.com/
+- API exclusiva da Aplicação: https://marvel-back-jp.herokuapp.com/
 
 ---
