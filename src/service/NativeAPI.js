@@ -1,4 +1,4 @@
-const baseURL = "http://localhost:3001/";
+const baseURL = "https://marvel-back-jp.herokuapp.com/";
 const applicationJsonContent = "application/json";
 
 export const getCharacterByName = async (name) => {
