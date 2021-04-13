@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import { allCharactersURL } from "../../service/Endpoints";
 import { getAllInfo } from "../../service/MarvelAPI";
 import { getCharacterByName } from "../../service/NativeAPI";
 import { verifyUser } from "../../service/LocalStorage";
@@ -26,7 +25,7 @@ export default function Characters() {
   useEffect(() => {
     verifyUser(history);
     const func = async () => {
-      const responseAPI = await getAllInfo(allCharactersURL, offset);
+      const responseAPI = await getAllInfo('characters', offset);
       setDataAPI(responseAPI);
     };
     func();
