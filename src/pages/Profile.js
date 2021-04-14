@@ -69,7 +69,7 @@ export default function Profile() {
       </form>
       <section className="register-section-btns">
         <Button
-          className="indiv-btn"
+          className="indiv-btn-cha"
           title="Save"
           isDisabled={isDisabled}
           onClick={handleClick}

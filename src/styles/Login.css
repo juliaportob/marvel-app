@@ -2,7 +2,6 @@
 
 * {
   font-family: 'Roboto', sans-serif;
-  color: white;
 }
 
 .main-div-login {
@@ -37,10 +36,12 @@
   display: flex;
   flex-direction: column;
   font-weight: 600;
+  color: #202020;
 }
 
 .individual-inputs {
   margin-top: 10%;
+  color: #202020;
 }
 
 .input-input {

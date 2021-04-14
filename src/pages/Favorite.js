@@ -59,7 +59,7 @@ export default function Favorite() {
               <p>More details</p>
             </Link>
             <button
-              className="indiv-btn"
+              className="indiv-btn-cha"
               type="button"
               onClick={() => removeFav(fav)}
             >

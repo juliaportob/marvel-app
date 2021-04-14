@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import "../styles/Login.css";
 
 const Input = ({ title, type, onChange, value, placeholder }) => (
-  <div className="defaultInput">
+  <div>
     <label htmlFor={title}>{title}</label>
     <input
       className="input-input"

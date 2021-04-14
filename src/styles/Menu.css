@@ -1,0 +1,8 @@
+
+.main-menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  text-decoration: none;
+  font-size: larger;
+}

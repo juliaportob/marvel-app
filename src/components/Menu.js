@@ -1,31 +1,32 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import '../styles/Menu.css';
 
 const Menu = () => (
-  <div className="main-div-menu">
+  <div className="main-menu">
     <Link to="/profile">
       <div className="indiv-menu">
-        <p>Profile -</p>
+        <p>Profile</p>
       </div>
     </Link>
     <Link to="/favorite">
       <div className="indiv-menu">
-        <p>Favorite -</p>
+        <p>Favorite</p>
       </div>
     </Link>
     <Link to="/characters">
       <div className="indiv-menu">
-        <p>Characters -</p>
+        <p>Characters</p>
       </div>
     </Link>
     <Link to="/comics">
       <div className="indiv-menu">
-        <p>Comics -</p>
+        <p>Comics</p>
       </div>
     </Link>
     <Link to="/">
       <div className="indiv-menu" onClick={() => localStorage.clear()}>
-        <p>Log out </p>
+        <p>Log out</p>
       </div>
     </Link>
   </div>
